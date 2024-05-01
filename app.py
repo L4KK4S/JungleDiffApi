@@ -21,20 +21,21 @@ def api():
     # On actualise le code d'erreur
     player.update_error_code(player)
 
-    # Si le serveur n'est pas valide
-    if player.code_error == 1:
-        return jsonify({'error': 'Invalid server. Please use one of the following: euw, na, eune, br, kr, lan, las, oce, ru, tr'})
-
-    # Si le joueur n'est pas valide
-    if player.code_error == 2:
-        return jsonify({'error': 'Invalid player. Please check the name and the gametag.'})
+    # On renvoie les erreurs
+    match player.code_error:
+        case 1:
+            return jsonify({'error': 'Invalid server. Please use one of the following: euw, na, eune, br, kr, lan, las, oce, ru, tr'})
+        case 2:
+            return jsonify({'error': 'Invalid player. Please check the name and the gametag.'})
+        case _:
+            pass
 
     # Résultat
     result = {
         'name': player.name,
         'gametag': player.gametag,
         'server': player.server,
-        'opgg_link': player.opgg_link
+        'links': player.links
     }
 
     # Renvoyer le résultat
