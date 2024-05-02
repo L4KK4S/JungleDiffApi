@@ -1,6 +1,7 @@
 # Description: Ce fichier contient la classe Game qui permet d'avoir des informations sur une game
 
 # ------------------- Imports ------------------- #
+import _variables as v
 import requests
 import lxml
 from bs4 import BeautifulSoup
@@ -9,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
+
 
 # --------------- Game Class ------------------ #
 class Game:

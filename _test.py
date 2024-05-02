@@ -5,8 +5,8 @@ import game
 
 if __name__ == "__main__" :
 
-    # player = player.Player("L4KK4S", "EFREI", "euw")
-    # player.get_match_id(debug=True)
+    player = player.Player("L4KK4S", "EFREI", "euw")
+    print(player.get_match_id(nb_games=3))
 
-    game = game.Game("euw", "6681846948")
-    print(game)
+    #game = game.Game("euw", "6681846948")
+    #print(game)

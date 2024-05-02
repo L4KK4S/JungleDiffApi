@@ -62,7 +62,7 @@ class Player:
         return True
 
     # Méthode pour récupérer un match id
-    def get_match_id(self, nb_match=5, wait_delay=5, debug=False):
+    def get_match_id(self, nb_games=5, wait_delay=1, debug=False):
 
         """
         Dans cette méthode une erreur courante est l'erreur de type StaleElementReferenceException
@@ -70,6 +70,8 @@ class Player:
         Pour éviter cette erreur, on utilise un cache pour stocker les éléments et on les rafraîchit
         si l'exception est levée.
         """
+
+        print(nb_games)
 
         # options pour le driver
         edge_options = Options()
@@ -97,7 +99,7 @@ class Player:
                     match_id = href[len(f"https://blitz.gg/lol/match/{self.server}1/{self.name}-{self.gametag}/"):]
                     match_ids.append(match_id)
                     cpt += 1
-                    if cpt == nb_match:
+                    if cpt == nb_games:
                         break
         except StaleElementReferenceException:
             # Gestion de l'exception de référence d'élément obsolète
@@ -110,7 +112,7 @@ class Player:
                     match_id = href[len(f"https://blitz.gg/lol/match/{self.server}1/{self.name}-{self.gametag}/"):]
                     match_ids.append(match_id)
                     cpt += 1
-                    if cpt == nb_match:
+                    if cpt == nb_games:
                         break
 
         if debug:
@@ -121,3 +123,5 @@ class Player:
 
         # on ferme le driver
         driver.quit()
+
+        return match_ids
